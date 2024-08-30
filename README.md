@@ -1,66 +1,85 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# test Web Application with Laravel and Vue.js
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
 
-## About Laravel
+This is a simple web application with a PHP Laravel backend and a Vue.js frontend. The application includes basic login and registration functionalities with form validation and error handling.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+we used Laravel v11.21.0 (PHP v8.2.4) 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Backend Setup
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. **Install Laravel**
 
-## Learning Laravel
+    composer create-project --prefer-dist laravel/laravel testProjectBackend
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+2. **Database Migration**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    Create and run the migration for the `users` table:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    php artisan make:model User -m
+    php artisan migrate
 
-## Laravel Sponsors
+3. **AuthController**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    Implements methods for user registration and login with validation.
 
-### Premium Partners
+4. **API Routes**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    Define routes for registration and login in `routes/api.php`.
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Frontend Setup
 
-## Code of Conduct
+1. **Install Vue.js**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    Create a Vue.js project using Vite:
+    npm create vite@latest frontend --template vue
 
-## Security Vulnerabilities
+2. **Install Axios**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    For making HTTP requests:
+    npm install axios
 
-## License
+3. **Create Components**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    - `Login.vue`: Handles user login.
+    - `Register.vue`: Handles user registration.
+
+4. **Main Vue Instance**
+    Added the plugin for axios and use into App component
+    Configures Axios and mounts the main `App` component.
+
+## Running the Application
+
+1. **Backend**
+
+    Navigate to the `testProjectBackend` directory and run:
+
+    php artisan serve
+
+    The Laravel server will run on `http://localhost:8000`.
+
+2. **Frontend**
+
+    Navigate to the `frontend` directory and run:
+
+    npm install
+    npm run dev
+
+    we need node -v for this greater the 16 
+    in our project we used v20.17.0 for this project
+
+    for update the node version use following commands 
+    nvm install --lts
+    nvm use --lts
+
+## Database
+
+    we used mysql database for this application
+    migrated the default table of the laravel into the databse 
+    Need to configure the Database details into the laravel env file 
+    
+    DB_HOST
+    DB_DATABASE
+    DB_USERNAME
+    DB_PASSWORD
